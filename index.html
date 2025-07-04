@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eletrônica Neto - Conserto de Aparelhos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating-button {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* Proporção 16:9 */
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .hero-image {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            transition: all 0.3s ease;
+            border: 1px solid #d1d5db;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-bolt text-2xl text-yellow-300"></i>
+                    <h1 class="text-2xl font-bold">Eletrônica Neto</h1>
+                </div>
+                
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#home" class="hover:text-yellow-300 transition">Início</a></li>
+                        <li><a href="#services" class="hover:text-yellow-300 transition">Serviços</a></li>
+                        <li><a href="#about" class="hover:text-yellow-300 transition">Sobre</a></li>
+                        <li><a href="#testimonials" class="hover:text-yellow-300 transition">Depoimentos</a></li>
+                        <li><a href="#contact" class="hover:text-yellow-300 transition">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="md:hidden text-2xl" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="#home" class="block hover:text-yellow-300 transition">Início</a></li>
+                    <li><a href="#services" class="block hover:text-yellow-300 transition">Serviços</a></li>
+                    <li><a href="#about" class="block hover:text-yellow-300 transition">Sobre</a></li>
+                    <li><a href="#testimonials" class="block hover:text-yellow-300 transition">Depoimentos</a></li>
+                    <li><a href="#contact" class="block hover:text-yellow-300 transition">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Conserto profissional de eletrônicos</h2>
+                <p class="text-xl mb-8">Soluções rápidas e eficientes para seus aparelhos eletrônicos com garantia e qualidade.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://wa.me/5511987654321" target="_blank" class="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-6 rounded-lg flex items-center justify-center transition">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i> Fale pelo WhatsApp
+                    </a>
+                    <a href="#contact" class="bg-white hover:bg-gray-100 text-blue-900 font-bold py-3 px-6 rounded-lg flex items-center justify-center transition">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Nossa Localização
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Técnico consertando eletrônicos" class="hero-image max-w-md w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Nossos Serviços</h2>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 border border-gray-100 transition duration-300">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-mobile-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-3">Conserto de Celulares</h3>
+                    <p class="text-gray-600">Troca de telas, baterias, conector de carga, problemas de software e muito mais para todas as marcas.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 border border-gray-100 transition duration-300">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-laptop text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-3">Reparo de Notebooks</h3>
+                    <p class="text-gray-600">Conserto de placa-mãe, troca de teclado, problemas de energia, superaquecimento e upgrades.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 border border-gray-100 transition duration-300">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-tv text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-3">Reparo de TVs</h3>
+                    <p class="text-gray-600">Conserto de placas, troca de tela, problemas de imagem e som, atualização de software.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 border border-gray-100 transition duration-300">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-gamepad text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-3">Conserto de Videogames</h3>
+                    <p class="text-gray-600">Reparo de consoles PS4, PS5, Xbox, Nintendo Switch e outros. Problemas de leitura, superaquecimento e mais.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 border border-gray-100 transition duration-300">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-tablet-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-3">Reparo de Tablets</h3>
+                    <p class="text-gray-600">Troca de tela, bateria, problemas de carregamento e conserto geral para iPads e tablets Android.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 border border-gray-100 transition duration-300">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-plug text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-3">Outros Eletrônicos</h3>
+                    <p class="text-gray-600">Reparo de som automotivo, home theater, caixas de som, roteadores e outros aparelhos eletrônicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Técnico da Eletrônica Neto" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">Sobre a Eletrônica Neto</h2>
+                    <p class="text-gray-700 mb-4">Há mais de 10 anos no mercado, a Eletrônica Neto se destaca pelo atendimento personalizado e qualidade nos serviços prestados. Nosso técnico Neto possui vasta experiência e certificações nas principais marcas do mercado.</p>
+                    <p class="text-gray-700 mb-6">Utilizamos apenas peças originais ou de qualidade equivalente, garantindo a durabilidade dos reparos realizados. Todos os nossos serviços possuem garantia escrita, para sua total tranquilidade.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Atendimento Rápido</h4>
+                                <p class="text-gray-600">Muitos reparos são realizados na hora, sem necessidade de deixar o aparelho conosco.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Orçamento Sem Compromisso</h4>
+                                <p class="text-gray-600">Fazemos avaliação gratuita e só iniciamos o serviço após sua aprovação.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Garantia em Todos os Serviços</h4>
+                                <p class="text-gray-600">Todos os reparos possuem garantia por escrito, para sua segurança.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex space-x-4">
+                        <div class="bg-blue-100 rounded-lg p-4 text-center w-1/3">
+                            <div class="text-3xl font-bold text-blue-900">10+</div>
+                            <div class="text-sm text-blue-800">Anos no mercado</div>
+                        </div>
+                        <div class="bg-blue-100 rounded-lg p-4 text-center w-1/3">
+                            <div class="text-3xl font-bold text-blue-900">5.000+</div>
+                            <div class="text-sm text-blue-800">Aparelhos consertados</div>
+                        </div>
+                        <div class="bg-blue-100 rounded-lg p-4 text-center w-1/3">
+                            <div class="text-3xl font-bold text-blue-900">98%</div>
+                            <div class="text-sm text-blue-800">Clientes satisfeitos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">O Que Nossos Clientes Dizem</h2>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-blue-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="italic mb-4">"Levei meu celular com problema na tela e foi consertado no mesmo dia. Preço justo e atendimento excelente. Recomendo!"</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Carlos Silva</h4>
+                            <p class="text-sm text-blue-200">Cliente desde 2020</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-blue-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="italic mb-4">"Meu notebook não ligava mais e o Neto conseguiu recuperar todos os meus arquivos e ainda deixou o computador mais rápido. Super indico!"</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ana Paula</h4>
+                            <p class="text-sm text-blue-200">Cliente desde 2019</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-blue-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="italic mb-4">"Conserto de TV com ótimo custo-benefício. Explicou o problema de forma clara e deu garantia no serviço. Voltarei sempre que precisar."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Roberto Almeida</h4>
+                            <p class="text-sm text-blue-200">Cliente desde 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#contact" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-8 rounded-lg transition">
+                    Quero um orçamento agora!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Entre em Contato</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Estamos prontos para ajudar com qualquer problema em seus aparelhos eletrônicos.</p>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/2 bg-blue-50 rounded-lg p-8 shadow-md">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6">Informações de Contato</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-900">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Endereço</h4>
+                                <p class="text-gray-700">Rua das Eletrônicas, 123 - Centro</p>
+                                <p class="text-gray-700">São Paulo - SP</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-900">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Telefone</h4>
+                                <p class="text-gray-700">(11) 3456-7890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-900">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">WhatsApp</h4>
+                                <p class="text-gray-700">(11) 98765-4321</p>
+                                <a href="https://wa.me/5511987654321" target="_blank" class="text-blue-600 hover:text-blue-800 inline-block mt-1">Clique para conversar</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-900">
+                                <i class="far fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Horário de Funcionamento</h4>
+                                <p class="text-gray-700">Segunda a Sexta: 08:00 - 18:00</p>
+                                <p class="text-gray-700">Sábado: 09:00 - 13:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-blue-900 mb-4">Nos siga nas redes sociais</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-900 p-3 rounded-full transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-900 p-3 rounded-full transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-900 p-3 rounded-full transition">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-md p-8 border border-gray-100">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-6">Envie uma Mensagem</h3>
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Seu Nome</label>
+                                <input type="text" id="name" class="contact-form w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Seu Email</label>
+                                <input type="email" id="email" class="contact-form w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Seu Telefone</label>
+                                <input type="tel" id="phone" class="contact-form w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Assunto</label>
+                                <select id="subject" class="contact-form w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">Selecione...</option>
+                                    <option value="orcamento">Orçamento</option>
+                                    <option value="duvida">Dúvida</option>
+                                    <option value="reclamacao">Reclamação</option>
+                                    <option value="elogio">Elogio</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                                <textarea id="message" rows="5" class="contact-form w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <i class="fas fa-paper-plane mr-2"></i> Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 rounded-lg overflow-hidden shadow-xl">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.097417518863!2d-46.65390548502209!3d-23.56503018468081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1658792345678!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511987654321" target="_blank" class="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg floating-button transition z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-bolt text-2xl text-yellow-300"></i>
+                        <h2 class="text-2xl font-bold">Eletrônica Neto</h2>
+                    </div>
+                    <p class="mt-2 text-blue-200">Conserto profissional com qualidade e garantia.</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <p class="text-blue-200 mb-2">© 2023 Eletrônica Neto. Todos os direitos reservados.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-200 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-blue-200 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-blue-200 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Service card animations
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+            });
+        });
+    </script>
+</body>
+</html>
